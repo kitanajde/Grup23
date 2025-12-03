@@ -1,0 +1,12 @@
+{
+  "admin": {
+    "username": "admin",
+    "password": {
+      "salt": "HEX_SALT_HERE",
+      "hash": "HEX_HASH_HERE",
+      "iters": 200000,
+      "algo": "sha256"
+    },
+    "role": "admin"
+  }
+}

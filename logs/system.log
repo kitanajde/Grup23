@@ -1,0 +1,5 @@
+2025-11-29 14:13:33,127 - WARNING - failed login for user: btl
+2025-11-29 14:23:50,312 - INFO - user registered: btl as admin
+2025-11-29 16:17:13,922 - INFO - user registered: err as user
+2025-11-29 16:17:25,767 - INFO - user authenticated: err
+2025-11-29 16:17:46,724 - INFO - cmd identity-disc executed by err
