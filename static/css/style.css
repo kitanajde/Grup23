@@ -1,0 +1,28 @@
+/* Arka plan ızgara efekti */
+body {
+    background-image: 
+        linear-gradient(rgba(0, 242, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: grid-move 20s linear infinite;
+}
+
+@keyframes grid-move {
+    from { background-position: 0 0; }
+    to { background-position: 0 50px; }
+}
+
+/* Kaydırma çubuğu tasarımı */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #010b13; }
+::-webkit-scrollbar-thumb { background: #00f2ff; }
+
+/* Yanıp sönen terminal imleci efekti */
+.cursor-blink::after {
+    content: "_";
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}

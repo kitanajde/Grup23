@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flynn Grid Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: #010b13; color: #00f2ff; font-family: 'Courier New', monospace; }
+        .neon-box { border: 1px solid #00f2ff; box-shadow: 0 0 15px rgba(0, 242, 255, 0.4); background: rgba(0, 0, 0, 0.8); }
+        .mcp-text { color: #ff0055; text-shadow: 0 0 5px #ff0055; }
+    </style>
+</head>
+<body class="p-10">
+    <div class="max-w-5xl mx-auto">
+        <div class="flex justify-between items-center mb-10 border-b border-cyan-800 pb-4">
+            <h1 class="text-3xl font-bold tracking-widest">SYSTEM_CONSOLE://{{ disc.username }}</h1>
+            <a href="/logout" class="text-xs hover:text-white">[TERMINATE_SESSION]</a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="neon-box p-6">
+                <h2 class="text-xl mb-6 border-b border-cyan-900 pb-2">IDENTITY_DISC</h2>
+                <ul class="space-y-4 text-sm">
+                    <li>ROLE: <span class="text-white">{{ disc.role }}</span></li>
+                    <li>SECURITY_LEVEL: <span class="text-white">{{ disc.security_level }}</span></li>
+                    <li>THREAT_SCORE: <span class="{% if disc.threat_score > 0 %}text-red-500{% else %}text-white{% endif %}">{{ disc.threat_score }}</span></li>
+                    <li>ACCESS_COUNT: <span class="text-white">{{ disc.login_count }}</span></li>
+                    <li>LAST_ACCESS: <span class="text-xs text-gray-400">{{ disc.last_access }}</span></li>
+                </ul>
+            </div>
+
+            <div class="col-span-2 neon-box p-6 flex flex-col h-[500px]">
+                <div class="flex-grow overflow-y-auto mb-4 space-y-2 text-sm" id="console">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="{% if category == 'mcp' %}mcp-text{% else %}text-cyan-400{% endif %}">
+                                    >> {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
+                
+                <form action="/execute" method="POST" class="mt-auto">
+                    <div class="flex border-t border-cyan-900 pt-4">
+                        <span class="mr-2">></span>
+                        <input name="command" autocomplete="off" autofocus 
+                               class="bg-transparent outline-none w-full text-white" 
+                               placeholder="Enter grid command...">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
